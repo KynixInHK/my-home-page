@@ -14,7 +14,7 @@ onMounted(async () => {
   show.value = true
   WebGLFluid(canvas.value, {
     SPLAT_COUNT: 50,
-    BACK_COLOR: { r: 255, g: 255, b: 255 },
+    BACK_COLOR: !window.matchMedia("(prefers-color-scheme: dark)").matches ? { r: 255, g: 255, b: 255 } : { r: 0, g: 0, b: 0 },
   })
 
   let dewvine = await axios.get("https://dewvine.axiomatrix.org/?length=25")
@@ -43,7 +43,7 @@ onMounted(async () => {
   </Transition>
 
   <div class="copyright">
-    Copyright © {{new Date().getFullYear()}} <a href="https://www.kynix.tw/" style="color: black">Adrian Chen</a>
+    Copyright © {{new Date().getFullYear()}} <a href="https://www.kynix.tw/">Adrian Chen</a>
   </div>
 </template>
 
@@ -93,6 +93,10 @@ canvas {
   text-align: center;
 }
 
+.copyright a {
+  color: black;
+}
+
 .fade-in-enter-active,
 .fade-in-leave-active {
   transition: all 1.5s ease;
@@ -112,5 +116,20 @@ canvas {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .link {
+    border-color: white;
+    color: white;
+  }
+  .link:hover {
+    background-color: #fff;
+    color: #000;
+  }
+
+  .copyright a {
+    color: white;
+  }
 }
 </style>
