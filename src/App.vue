@@ -17,7 +17,7 @@ onMounted(async () => {
     BACK_COLOR: !window.matchMedia("(prefers-color-scheme: dark)").matches ? { r: 255, g: 255, b: 255 } : { r: 0, g: 0, b: 0 },
   })
 
-  let dewvine = await axios.get("https://dewvine.axiomatrix.org/?length=25")
+  let dewvine = await axios.get("https://dewvine.kynix.tw/?length=25")
   showDewvine.value = true
   dewvineSentence.value = dewvine.data[0].sentence
 })
